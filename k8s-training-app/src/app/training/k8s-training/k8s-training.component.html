@@ -1,3 +1,11 @@
-<p>
-  k8s-training works!
-</p>
+<div class="container">
+  <form>
+    <div class="form-group">
+      <label for ="imageupload"><strong>Image Upload</strong></label>
+      <input type="file" (change)="onImageChanged($event)" class="form-control" id="imageupload" accept="image/*">
+
+    </div>
+    <button (click)="onUpload()"title="Submit" class="btn btn-neutral">Submit</button>
+
+  </form>
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse, } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { environment as envConfigFile } from '../../../environments/environment';
 
 interface DataResponse {
   image_name: string;
@@ -11,23 +11,26 @@ interface DataResponse {
   templateUrl: './k8s-training.component.html',
   styleUrls: ['./k8s-training.component.css']
 })
+
 export class K8sTrainingComponent implements OnInit{
-   image: any;
-   imageName: string;
-   baseAddress: string;
-   restApi: string;
-   base64TextString: any;
-   endpoint: string;
-   location: string;
-   headers: HttpHeaders;
+   private image: any;
+   private imageName: string;
+   private baseAddress: string;
+   private restApi: string;
+   private port: string;
+   private base64TextString: any;
+   private endpoint: string;
+   private environmentContext: string;
+
    constructor(private http:HttpClient) {
 
   }
   ngOnInit() {
-    this.location = environment.location;
-    this.baseAddress =  environment.apiUrl;
-    this.restApi = '/v0.1/pedestrian_detector';
-    this.endpoint = this.baseAddress + this.restApi;
+    this.environmentContext = envConfigFile.settings.environment;
+    this.baseAddress =  envConfigFile.settings.baseAddress;
+    this.restApi = envConfigFile.settings.apiUrl;
+    this.port = envConfigFile.settings.port;
+    this.endpoint = this.baseAddress + ':' + this.port + this.restApi;
     this.image = '';
   }
 
@@ -60,7 +63,7 @@ export class K8sTrainingComponent implements OnInit{
   }
    //converts image to base64 string
   _handleReaderLoaded(readerEvt) {
-    var binaryString = readerEvt.target.result;
+    let binaryString = readerEvt.target.result;
     this.base64TextString= btoa(binaryString); 
     this.image = "data:image/jpeg;base64,"+this.base64TextString;
   }

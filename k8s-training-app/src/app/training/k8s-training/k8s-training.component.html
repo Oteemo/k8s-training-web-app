@@ -1,6 +1,7 @@
 <div class="container">
-      <span>Environment {{location}}</span>
-      <label for ="imageupload"><strong>URL: {{endpoint}}</strong></label>
+      <span>Environment: {{environmentContext}}</span> <br>
+      <span>Full Address: {{endpoint}}</span> <br>
+      <label for ="imageupload"></label> <br>
       <input type="file" (change)="onImageChanged($event)" class="form-control" id="imageupload" accept="image/*">
 
     <button (click)="uploadImage()"title="Submit" class="btn btn-neutral">Submit</button>

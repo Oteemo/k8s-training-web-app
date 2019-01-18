@@ -1,0 +1,11 @@
+{
+  "production": true,
+
+  "settings": {
+    "baseAddress": "http://1.1.1.1",
+    "port": "8900",
+    "apiUrl": "/v0.1/pedestrian_detector",
+    "environment": "Production"
+  }
+}
+

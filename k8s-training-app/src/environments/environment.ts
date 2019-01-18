@@ -4,8 +4,12 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://0.0.0.0:8900',
-  location: 'Dev'
+  settings:  {
+    baseAddress: 'http://0.0.0.0',
+    port: '8900',
+    apiUrl: '/v0.1/pedestrian_detector',
+    environment: 'Development'
+  }
 };
 
 /*

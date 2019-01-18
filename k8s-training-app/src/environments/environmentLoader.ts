@@ -9,7 +9,6 @@ export const environmentLoader = new Promise<any>((resolve, reject) => {
       if (xmlhttp.status === 200) {
         resolve(JSON.parse(xmlhttp.responseText));
       } else {
-        alert("not found")
         resolve(defaultEnvironment);
       }
     };

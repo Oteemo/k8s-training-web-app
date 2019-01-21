@@ -13,6 +13,7 @@ interface DataResponse {
 })
 
 export class K8sTrainingComponent implements OnInit{
+   title = 'Kubernetes Training';
    private image: any;
    private imageName: string;
    private baseAddress: string;

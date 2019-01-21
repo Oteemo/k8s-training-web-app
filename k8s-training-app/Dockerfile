@@ -17,4 +17,4 @@ RUN npm install -g @angular/cli@7.2.1
 COPY . /usr/src/app
 
 # start app
-CMD ng build
+CMD ng serve --host 0.0.0.0 --port 4200

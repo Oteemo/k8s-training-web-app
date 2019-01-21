@@ -56,6 +56,7 @@ export class K8sTrainingComponent implements OnInit{
       
     this.http.post<DataResponse>(this.endpoint, data ).subscribe( 
       response => { 
+      alert("Success!");
       this.image = "data:image/jpeg;base64,"+response.processed_image;
 
     }, 

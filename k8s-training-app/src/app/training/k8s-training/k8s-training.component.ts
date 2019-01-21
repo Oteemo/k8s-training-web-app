@@ -45,6 +45,9 @@ export class K8sTrainingComponent implements OnInit{
 
    //performs post request to endpoint
    uploadImage( ) {
+     if(this.image = '') {
+       alert("Please upload an image and try again.");
+     } else {
     let data = {
       'encoded_image': this.base64TextString,
       'image_name':this.imageName
@@ -55,10 +58,11 @@ export class K8sTrainingComponent implements OnInit{
       this.image = "data:image/jpeg;base64,"+response.processed_image;
 
     }, 
-      (err: HttpErrorResponse) => {
-        alert(err.message);
+      (err: HttpErrorResponse) => {      
+        alert("There was a problem. Please try again later.");
       },    
     );
+    }
   }
    //converts image to base64 string
   _handleReaderLoaded(readerEvt) {
@@ -66,5 +70,4 @@ export class K8sTrainingComponent implements OnInit{
     this.base64TextString= btoa(binaryString); 
     this.image = "data:image/jpeg;base64,"+this.base64TextString;
   }
-
 }

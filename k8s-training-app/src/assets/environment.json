@@ -1,11 +1,10 @@
 {
-  "production": true,
+    "production": true,
 
-  "settings": {
-    "baseAddress": "http://1.1.1.1",
-    "port": "8900",
-    "apiUrl": "/v0.1/pedestrian_detector",
-    "environment": "Production"
+    "settings": {
+      "baseAddress": "http://localhost",
+      "port": "8900",
+      "apiUrl": "/v0.1/pedestrian_detector",
+      "environment": "Production"
+    }
   }
-}
-

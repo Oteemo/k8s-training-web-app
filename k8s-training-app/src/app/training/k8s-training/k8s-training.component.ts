@@ -37,18 +37,21 @@ export class K8sTrainingComponent implements OnInit{
 
   //reads image, makes call to convert it to base 64 string
   onImageChanged(event) {
-    this.image= event.target.files[0];
-    this.imageName = this.image.name;
+    let localImage =  event.target.files[0];
+    let localImageName = localImage.name;
     var reader = new FileReader();
-    reader.onload =this._handleReaderLoaded.bind(this);
-    reader.readAsBinaryString(this.image);
+    reader.onload = this.imageConversion.bind(this);
+    reader.readAsBinaryString(localImage);
+    this.image = localImage;
+    this.imageName = localImageName;
   }
 
    //performs post request to endpoint
-   uploadImage( ) {
-     if(this.image = '') {
+   uploadImage() {
+     let localImage = this.image;
+     if(localImage == '') {
        alert("Please upload an image and try again.");
-     } else {
+     } else { 
     let data = {
       'encoded_image': this.base64TextString,
       'image_name':this.imageName
@@ -58,7 +61,6 @@ export class K8sTrainingComponent implements OnInit{
       response => { 
       alert("Success!");
       this.image = "data:image/jpeg;base64,"+response.processed_image;
-
     }, 
       (err: HttpErrorResponse) => {      
         alert("There was a problem. Please try again later.");
@@ -67,7 +69,7 @@ export class K8sTrainingComponent implements OnInit{
     }
   }
    //converts image to base64 string
-  _handleReaderLoaded(readerEvt) {
+  imageConversion(readerEvt) {
     let binaryString = readerEvt.target.result;
     this.base64TextString= btoa(binaryString); 
     this.image = "data:image/jpeg;base64,"+this.base64TextString;

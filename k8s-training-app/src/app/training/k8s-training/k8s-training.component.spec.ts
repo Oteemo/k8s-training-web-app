@@ -14,15 +14,36 @@ describe('K8sTrainingComponent', () => {
     ]
     })
     .compileComponents();
-  }));
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(K8sTrainingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should convert the image to base64 string', () => {
+    var mockValue = createMockObject();
+    spyOn(component, 'imageConversion').and.callThrough();
+    component.imageConversion(mockValue);
+    expect(component.imageConversion).toHaveBeenCalled();
+  });
+
+  it('should try to submit without uploading an image', () => {
+    spyOn(window, 'alert');
+    component.uploadImage();
+    expect(window.alert).toHaveBeenCalledWith('Please upload an image and try again.');
+  });
+
+  //Helper Functions
+  function createMockObject() { 
+    let mockObject =  {
+       target:  { 
+         result: 'test'
+       }
+    }
+    return mockObject;
+  }
+  
 });

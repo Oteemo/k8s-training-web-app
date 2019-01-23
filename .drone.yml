@@ -1,7 +1,6 @@
 kind: pipeline
 name: AngularImageProcessing
 
-steps:
    buildtest:
     image: node:9.6.1
     commands:

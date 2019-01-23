@@ -2,7 +2,7 @@ kind: pipeline
 name: AngularImageProcessing
 
 steps:
-  -name: build_and_test
+  -name: buildtest
     image: node:9.6.1
     commands:
     - wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
@@ -17,7 +17,7 @@ steps:
     status: 
       -success
    depends_on:
-     -build_and_test
+     -buildtest
    publish:
     image: oteemo/angular-training-app:latest
     repo: oteemo/angular-training-app

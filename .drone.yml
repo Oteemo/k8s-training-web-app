@@ -11,35 +11,24 @@ pipeline:
     - npm install -g @angular/cli@7.2.1
     - ng test --browsers Chrome_without_sandbox --watch=false
 
-  # deploy:
-  #   depends_on:
-  #      -buildtest
-  #   trigger: 
-  #    status: 
-  #     -success
-  #   publish:
-  #     image: oteemo/angular-training-app
-  #     repo: oteemo/angular-training-app
-  #     when:
-  #        branch: add-drone-file
-
-#  publish:
-#     image: plugins/docker
-#     repo: iahmad/k8s-image-processor
-#     dockerfile: Dockerfile
-#     secrets: [ docker_username, docker_password ]
-#     tags: ${DRONE_COMMIT_SHA}
-#     when:
-#       branch: master
-#       event: push
-    
+  publish:
+    depends_on:
+       -buildtest
+    trigger: 
+     status: 
+      -success
+    publish:
+     image: oteemo/angular-training-app
+     repo: oteemo/angular-training-app
+     when:
+        branch: add-drone-file
   
-  SlackNotification:
-      trigger: 
-       status: 
-         -success
-      depends_on:
-          -buildtest 
+  notify:
+    depends_on:
+         -publish 
+    trigger: 
+     status: 
+       -success
      image: plugins/slack
      webhook: https://hooks.slack.com/services/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
      channel: k8s-imageproc-web-app

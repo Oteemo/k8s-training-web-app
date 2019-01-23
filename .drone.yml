@@ -2,7 +2,7 @@ kind: pipeline
 name: AngularImageProcessing
 
 steps:
-  -name: buildtest
+   buildtest:
     image: node:9.6.1
     commands:
     - wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
@@ -12,7 +12,7 @@ steps:
     - npm install
     - npm install -g @angular/cli@7.2.1
   
-  -name: deploy
+  deploy:
    trigger: 
     status: 
       -success
@@ -26,7 +26,7 @@ steps:
 
     
   
-  -name: SlackNotification
+  SlackNotification:
     trigger:
       status:
         -success

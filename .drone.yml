@@ -38,10 +38,8 @@ pipeline:
      trigger:
        status:
          -success
-         -failure
       depends_on:
-        -buildtest
-  
+        -buildtest 
      image: plugins/slack
      webhook: https://hooks.slack.com/services/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
      channel: k8s-imageproc-web-app

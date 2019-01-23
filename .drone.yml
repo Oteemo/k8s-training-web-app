@@ -18,10 +18,10 @@ pipeline:
      status: 
       -success
     publish:
-    image: oteemo/angular-training-app:latest
-      repo: oteemo/angular-training-app
-      when:
-        branch: add-drone-file
+      image: oteemo/angular-training-app:latest
+        repo: oteemo/angular-training-app
+        when:
+         branch: add-drone-file
 
     
   

@@ -11,13 +11,13 @@ steps:
     - cd k8s-training-app
     - npm install
     - npm install -g @angular/cli@7.2.1
-  
+    - ng test --browsers Chrome_without_sandbox --watch=false
   deploy:
+  depends_on:
+     -buildtest
    trigger: 
     status: 
       -success
-   depends_on:
-     -buildtest
    publish:
     image: oteemo/angular-training-app:latest
     repo: oteemo/angular-training-app

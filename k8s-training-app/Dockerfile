@@ -21,7 +21,5 @@ RUN npm install -g @angular/cli@7.2.1
 # add app
 COPY . /usr/src/app
 
-# Start app. 
-# 'ci' is a custom command that runs tests and serves the application at host 0.0.0.0 and port 4200 
-# It can be located in the package.json file of the application. 
-CMD ng serve --host 0.0.0.0 --port 4200
+# Run tests and start app. 
+CMD  ng test --browsers Chrome_without_sandbox --watch=false && ng serve --host 0.0.0.0 --port 4200

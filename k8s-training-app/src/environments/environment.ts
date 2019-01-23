@@ -7,9 +7,7 @@ export const environment = {
   settings:  {
     baseAddress: 'http://0.0.0.0',
     port: '8900',
-    apiUrl: '/v0.1/pedestrian_detector',
-    environment: 'Development'
-  }
+    apiUrl: '/v0.1/pedestrian_detector'  }
 };
 
 /*

@@ -21,13 +21,11 @@ export class K8sTrainingComponent implements OnInit{
    private port: string;
    private base64TextString: any;
    private endpoint: string;
-   private environmentContext: string;
 
    constructor(private http:HttpClient) {
 
   }
   ngOnInit() {
-    this.environmentContext = envConfigFile.settings.environment;
     this.baseAddress =  envConfigFile.settings.baseAddress;
     this.restApi = envConfigFile.settings.apiUrl;
     this.port = envConfigFile.settings.port;

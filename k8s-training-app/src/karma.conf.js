@@ -25,13 +25,13 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['ChromeHeadless'],
-        ChromeHeadless: {
-            base: 'ChromeHeadless',
-            flags: [
-                '--no-sandbox' // required to run without privileges in docker
-            ]
-        },
+browsers: ['Chrome','ChromeHeadless', 'Chrome_without_sandbox'],
+customLaunchers: {
+  Chrome_without_sandbox: {
+    base: 'ChromeHeadless',
+    flags: ['--no-sandbox'] // with sandbox it fails under Docker
+  }
+},
     singleRun: false
   });
 };

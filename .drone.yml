@@ -1,0 +1,29 @@
+pipeline:
+
+  Install build requirements and test:
+    image: node:9.6.1
+    environment:
+      FLASK_ENV: testing
+      FLASK_TESTING: "True"
+    commands:
+    - wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+    - echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' >> /etc/apt/sources.list
+    - apt-get update && apt-get install --no-install-recommends -y google-chrome-stable
+    - cd k8s-training-app
+    - npm install
+    - npm install -g @angular/cli@7.2.1
+
+  # slack:
+  #   image: plugins/slack
+  #   webhook: https://hooks.slack.com/services/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
+  #   channel: k8s-image-processor
+  #   username: drone
+  #   template: >
+  #     {{#success build.status}}
+  #       Build {{build.number}} succeeded. Good job.
+  #       {{ build.link }}
+  #     {{else}}
+  #       Build {{build.number}} failed. Fix me please.
+  #       {{ build.link }}
+  #     {{/success}}
+    

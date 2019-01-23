@@ -11,21 +11,24 @@ pipeline:
     - npm install -g @angular/cli@7.2.1
     - ng test --browsers Chrome_without_sandbox --watch=false
 
-  publish:
+  deploy:
     depends_on:
        -buildtest
     trigger: 
      status: 
       -success
     publish:
-     image: oteemo/angular-training-app
+     image: plugins/docker
+     tags: ${DRONE_COMMIT_SHA}
      repo: oteemo/angular-training-app
+     dockerfile: Dockerfile
+     secrets: 
      when:
         branch: add-drone-file
   
   notify:
     depends_on:
-         -publish 
+        -publish 
     trigger: 
      status: 
        -success

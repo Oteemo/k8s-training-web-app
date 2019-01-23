@@ -1,0 +1,36 @@
+pipeline: 
+
+  buildtest:
+    image: node:9.6.1
+    commands:
+    # - wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+    # - echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' >> /etc/apt/sources.list
+    # - apt-get update && apt-get install --no-install-recommends -y google-chrome-stable
+    # - cd k8s-training-app
+    # - npm install
+    # - npm install -g @angular/cli@7.2.1
+    # - ng test --browsers Chrome_without_sandbox --watch=false
+      - echo 'test'
+      
+  deploy:
+     image: plugins/docker
+     repo: tsiddique/angular-training-app
+     tags: ${DRONE_COMMIT_SHA}
+     secrets: [ docker_username, docker_password ]
+
+
+
+  notify:
+    image: plugins/slack        
+    webhook: https://hooks.slack.com/services/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
+    channel: k8s-imageproc-web-app
+    username: drone
+    template: >
+       {{#success build.status}}
+         Build {{build.number}} succeeded. Good job.
+          {{ build.link }}
+        {{else}}
+         Build {{build.number}} failed. Fix me please.
+         {{ build.link }}
+       {{/success}}
+    

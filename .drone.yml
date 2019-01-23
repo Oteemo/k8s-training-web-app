@@ -35,8 +35,8 @@ pipeline:
     
   
   SlackNotification:
-     trigger:
-       status:
+      trigger: 
+       status: 
          -success
       depends_on:
         -buildtest 

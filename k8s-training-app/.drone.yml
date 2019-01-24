@@ -3,26 +3,22 @@ pipeline:
   buildtest:
     image: node:9.6.1
     commands:
-    # - wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
-    # - echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' >> /etc/apt/sources.list
-    # - apt-get update && apt-get install --no-install-recommends -y google-chrome-stable
-    # - cd k8s-training-app
-    # - npm install
-    # - npm install -g @angular/cli@7.2.1
-    # - ng test --browsers Chrome_without_sandbox --watch=false
-      - echo 'ABC'
+    - wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+    - echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' >> /etc/apt/sources.list
+    - apt-get update && apt-get install --no-install-recommends -y google-chrome-stable
+    - npm install
+    - npm install -g @angular/cli@7.2.1
+    - ng test --browsers Chrome_without_sandbox --watch=false
       
-  deploy:
-     image: plugins/docker
-     repo: tsiddique/angular-training-app
-     dockerfile: Dockerfile
-     secrets: [ docker_username, docker_password ]
-     tags: ${DRONE_COMMIT_SHA}
-     when: 
-      branch: add-drone-file
-      event: push
-
-
+  publish:
+    image: plugins/docker
+    repo: tsiddique/angular-training-app
+    dockerfile: Dockerfile
+    secrets: [ docker_username, docker_password ]
+    tags: ${DRONE_COMMIT_SHA}
+    when: 
+    branch: add-drone-file
+    event: push
 
   notify:
     image: plugins/slack        

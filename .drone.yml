@@ -1,15 +1,17 @@
 pipeline: 
+workspace: 
+  path: src/github.com/oteemo/k8s-training-web-app/k8s-training-app
 
   buildtest:
     image: node:9.6.1
     commands:
-    - wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
-    - echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' >> /etc/apt/sources.list
-    - apt-get update && apt-get install --no-install-recommends -y google-chrome-stable
-    - npm install
-    - npm install -g @angular/cli@7.2.1
-    - ng test --browsers Chrome_without_sandbox --watch=false
-      
+    # - wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+    # - echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' >> /etc/apt/sources.list
+    # - apt-get update && apt-get install --no-install-recommends -y google-chrome-stable
+    # - npm install
+    # - npm install -g @angular/cli@7.2.1
+    # - ng test --browsers Chrome_without_sandbox --watch=false
+     - echo "helloWorld"
   publish:
     image: plugins/docker
     repo: tsiddique/angular-training-app

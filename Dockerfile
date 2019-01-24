@@ -17,7 +17,7 @@ ENV PATH /usr/src/app/node_modules/.bin:$PATH
 COPY ./k8s-training-app .
 
 # install and cache app dependencies
-RUN npm install
+RUN npm install --silent
 RUN npm install -g @angular/cli@7.2.1
 
 # Run tests and start app. 

@@ -1,6 +1,6 @@
 pipeline: 
 workspace: 
-  path: src/github.com/oteemo/k8s-training-web-app/k8s-training-app
+  base: /k8s-training-app
 
   buildtest:
     image: node:9.6.1

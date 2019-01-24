@@ -19,6 +19,6 @@ COPY ./k8s-training-app .
 # install and cache app dependencies
 RUN npm install --silent
 RUN npm install -g @angular/cli@7.2.1
-
+RUN npm update
 # Run tests and start app. 
 CMD  ng test --browsers Chrome_without_sandbox --watch=false && ng serve --host 0.0.0.0 --port 4200

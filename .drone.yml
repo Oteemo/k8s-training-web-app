@@ -1,7 +1,5 @@
 pipeline: 
-workspace: 
-  base: /k8s-training-app
-
+  
   buildtest:
     image: node:9.6.1
     commands:

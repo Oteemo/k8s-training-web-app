@@ -8,6 +8,7 @@ pipeline:
     - apt-get update && apt-get install --no-install-recommends -y google-chrome-stable
     - npm install
     - npm install -g @angular/cli@7.2.1
+    - cd k8s-training-app
     - ng test --browsers Chrome_without_sandbox --watch=false
     
   publish:

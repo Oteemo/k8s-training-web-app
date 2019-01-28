@@ -72,4 +72,14 @@ export class K8sTrainingComponent implements OnInit{
     this.base64TextString= btoa(binaryString); 
     this.image = "data:image/jpeg;base64,"+this.base64TextString;
   }
+
+   openSidebar() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+  }
+   
+   closeSidebar() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+  }
 }

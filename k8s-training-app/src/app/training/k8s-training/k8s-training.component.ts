@@ -47,17 +47,15 @@ export class K8sTrainingComponent implements OnInit{
 
    //performs post request to endpoint
    uploadImage() {
-     this.spinnerService.show();
      let localImage = this.image;
      if(localImage == '') {
-       alert("Please upload an image and try again.");
-       this.spinnerService.hide();
-     } else { 
+      alert("Please upload an image and try again.");
+     } else {
+    this.spinnerService.show();
     let data = {
       'encoded_image': this.base64TextString,
       'image_name':this.imageName
     }
-      
     this.http.post<DataResponse>(this.endpoint, data ).subscribe( 
       response => { 
       alert("Success!");

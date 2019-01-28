@@ -1,0 +1,22 @@
+img {
+  font-family: 'Helvetica';
+  font-weight: 300;
+  line-height: 2;  
+  text-align: center;
+  
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+}
+img:before { 
+  content: "";
+  display: block;
+  margin-bottom: 10px;
+}
+
+img:after { 
+  content: '';
+  display: block;
+  font-size: 12px;
+}

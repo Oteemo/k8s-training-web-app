@@ -6,8 +6,8 @@ pipeline:
     - wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
     - echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' >> /etc/apt/sources.list
     - apt-get update && apt-get install --no-install-recommends -y google-chrome-stable
-    - npm install
-    - npm install --save-dev @angular/cli@latest
+    - npm install -s
+    - npm install --save-dev @angular/cli@latest -s
     - cd k8s-training-app
     - ng test --browsers Chrome_without_sandbox --watch=false
     

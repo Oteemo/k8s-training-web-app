@@ -6,13 +6,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    K8sTrainingComponent
+    K8sTrainingComponent,
+    
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    Ng4LoadingSpinnerModule.forRoot()
-
+    Ng4LoadingSpinnerModule
   ],
   providers: [],
   bootstrap: [K8sTrainingComponent]

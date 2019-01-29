@@ -19,6 +19,8 @@ COPY ./k8s-training-app .
 # install and cache app dependencies
 RUN npm install -s
 RUN npm install -g @angular/cli@7.2.1 -s
-RUN npm update -s
+RUN npm install ng4-loading-spinner -s
+
+RUN npm update
 # Run tests and start app. 
 CMD  ng test --browsers Chrome_without_sandbox --watch=false && ng serve --host 0.0.0.0 --port 4200 --disable-host-check

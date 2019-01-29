@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment as envConfigFile } from '../../../environments/environment';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 interface DataResponse {
   image_name: string;
@@ -22,7 +23,7 @@ export class K8sTrainingComponent implements OnInit{
    private base64TextString: any;
    private endpoint: string;
 
-   constructor(private http:HttpClient) {
+   constructor(private http:HttpClient, private spinnerService: Ng4LoadingSpinnerService ) {
 
   }
   ngOnInit() {
@@ -48,23 +49,27 @@ export class K8sTrainingComponent implements OnInit{
    uploadImage() {
      let localImage = this.image;
      if(localImage == '') {
-       alert("Please upload an image and try again.");
-     } else { 
+      alert("Please upload an image and try again.");
+     } else {
+    this.spinnerService.show();
     let data = {
       'encoded_image': this.base64TextString,
       'image_name':this.imageName
     }
-      
     this.http.post<DataResponse>(this.endpoint, data ).subscribe( 
       response => { 
-      alert("Success!");
       this.image = "data:image/jpeg;base64,"+response.processed_image;
+      this.spinnerService.hide();
+      alert("Success!");
+
     }, 
       (err: HttpErrorResponse) => {      
         alert("There was a problem. Please try again later.");
+        this.spinnerService.hide();
       },    
     );
     }
+    this.spinnerService.hide();
   }
    //converts image to base64 string
   imageConversion(readerEvt) {

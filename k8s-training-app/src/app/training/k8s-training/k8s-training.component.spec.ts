@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import {HttpClientModule} from  '@angular/common/http';
 import { K8sTrainingComponent } from './k8s-training.component';
+import { Ng4LoadingSpinnerModule} from 'ng4-loading-spinner';
 
 describe('K8sTrainingComponent', () => {
   let component: K8sTrainingComponent;
@@ -8,9 +9,10 @@ describe('K8sTrainingComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ K8sTrainingComponent ],
+      declarations: [ K8sTrainingComponent ], 
       imports: [
         HttpClientModule,
+        Ng4LoadingSpinnerModule
     ]
     })
     .compileComponents();

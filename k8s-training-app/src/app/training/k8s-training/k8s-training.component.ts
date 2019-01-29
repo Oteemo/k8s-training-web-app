@@ -58,9 +58,10 @@ export class K8sTrainingComponent implements OnInit{
     }
     this.http.post<DataResponse>(this.endpoint, data ).subscribe( 
       response => { 
-      alert("Success!");
       this.image = "data:image/jpeg;base64,"+response.processed_image;
       this.spinnerService.hide();
+      alert("Success!");
+
     }, 
       (err: HttpErrorResponse) => {      
         alert("There was a problem. Please try again later.");
@@ -68,6 +69,7 @@ export class K8sTrainingComponent implements OnInit{
       },    
     );
     }
+    this.spinnerService.hide();
   }
    //converts image to base64 string
   imageConversion(readerEvt) {

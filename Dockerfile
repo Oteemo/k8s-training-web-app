@@ -27,5 +27,5 @@ RUN npm update
 RUN groupadd -g 999 appuser && useradd -r -u 999 -g appuser appuser
 USER appuser
 
-# Run tests and start app. 
-CMD  ng test --browsers Chrome_without_sandbox --watch=false && ng serve --host 0.0.0.0 --port 4200 --disable-host-check
+# start app. 
+CMD ng serve --host 0.0.0.0 --port 4200 --disable-host-check
